@@ -1,3 +1,10 @@
+# mailserver
+
+[![Build Status](https://drone.theautomation.nl/api/badges/theautomation/mailserver/status.svg)](https://drone.theautomation.nl/theautomation/mailserver)
+![GitHub repo size](https://img.shields.io/github/repo-size/theautomation/mailserver?logo=Github)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/theautomation/mailserver?logo=github)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/theautomation/mailserver/main?logo=github)
+
 ### Common setup config commands
 
 [Documentation](https://docker-mailserver.github.io/docker-mailserver/edge/).
