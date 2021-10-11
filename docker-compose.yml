@@ -1,0 +1,38 @@
+---
+version: "3.8"
+services:
+  prd-mailserver-app:
+    image: docker.io/mailserver/docker-mailserver:latest
+    container_name: prd-mailserver-app
+    restart: always
+    hostname: mail
+    domainname: theautomation.nl
+    env_file: prd-mailserver-app.env
+    networks:
+      mailserver:
+    ports:
+      - "25:25" # SMTP  (explicit TLS => STARTTLS)
+      - "143:143" # IMAP4 (explicit TLS => STARTTLS)
+      - "465:465" # ESMTP (implicit TLS)
+      - "587:587" # ESMTP (explicit TLS => STARTTLS)
+      - "993:993" # IMAP4 (implicit TLS)
+    volumes:
+      - ./mail-data/:/var/mail/
+      - ./mail-state/:/var/mail-state/
+      - ./mail-logs/:/var/log/mail/
+      - ./config/:/tmp/docker-mailserver/
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/letsencrypt/:/etc/letsencrypt/:ro
+    stop_grace_period: 1m
+    cap_add:
+      - NET_ADMIN
+      - SYS_PTRACE
+
+# NETWORKS
+networks:
+  mailserver:
+    driver: bridge
+    name: mailserver
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16

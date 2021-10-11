@@ -1,0 +1,5 @@
+*.env
+/config/
+/mail-data/
+/mail-state/
+/mail-logs/
