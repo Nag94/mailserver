@@ -1,0 +1,1 @@
+FROM docker.io/mailserver/docker-mailserver:latest
