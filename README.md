@@ -1,38 +1,40 @@
-
 ### Common setup config commands
 
+[Documentation](https://docker-mailserver.github.io/docker-mailserver/edge/).
+
 #### Add email user
+
 ```bash
 docker exec prd-mailserver-app setup email add user@theautomation.nl password
 ```
 
 #### Add alias
+
 ```bash
 docker exec prd-mailserver-app setup alias add alias@theautomation.nl user@theautomation.nl
 ```
 
-alias add 
-
 #### Config DKIM
+
 ```bash
 docker exec prd-mailserver-app setup config dkim
-``` 
+```
 
 ### ./setup.sh help
 
 SETUP(1)
 
 NAME
-    setup.sh - docker-mailserver administration script
+setup.sh - docker-mailserver administration script
 
 SYNOPSIS
-    ./setup.sh [ OPTIONS... ] COMMAND [ help | ARGUMENTS... ]
+./setup.sh [ OPTIONS... ] COMMAND [ help | ARGUMENTS... ]
 
     COMMAND := { email | alias | quota | config | relay | debug } SUBCOMMAND
 
 DESCRIPTION
-    This is the main administration script that you use for all your interactions with
-    'docker-mailserver'. Setup, configuration and much more is done with this script.
+This is the main administration script that you use for all your interactions with
+'docker-mailserver'. Setup, configuration and much more is done with this script.
 
     Please note that the script executes most of the commands inside the container itself.
     If the image was not found, this script will pull the ':latest' tag of
@@ -45,12 +47,12 @@ DESCRIPTION
     does not work with all scripts.
 
 [SUB]COMMANDS
-    COMMAND email :=
-        ./setup.sh email add <EMAIL ADDRESS> [<PASSWORD>]
-        ./setup.sh email update <EMAIL ADDRESS> [<PASSWORD>]
-        ./setup.sh email del [ OPTIONS... ] <EMAIL ADDRESS> [ <EMAIL ADDRESS>... ]
-        ./setup.sh email restrict <add|del|list> <send|receive> [<EMAIL ADDRESS>]
-        ./setup.sh email list
+COMMAND email :=
+./setup.sh email add <EMAIL ADDRESS> [<PASSWORD>]
+./setup.sh email update <EMAIL ADDRESS> [<PASSWORD>]
+./setup.sh email del [ OPTIONS... ] <EMAIL ADDRESS> [ <EMAIL ADDRESS>... ]
+./setup.sh email restrict <add|del|list> <send|receive> [<EMAIL ADDRESS>]
+./setup.sh email list
 
     COMMAND alias :=
         ./setup.sh alias add <EMAIL ADDRESS> <RECIPIENT>
@@ -77,9 +79,9 @@ DESCRIPTION
         ./setup.sh debug login <COMMANDS>
 
 EXAMPLES
-    ./setup.sh email add test@example.com
-        Add the email account test@example.com. You will be prompted
-        to input a password afterwards since no password was supplied.
+./setup.sh email add test@example.com
+Add the email account test@example.com. You will be prompted
+to input a password afterwards since no password was supplied.
 
     ./setup.sh config dkim keysize 2048 domain 'example.com,not-example.com'
         Creates keys of length 2048 but in an LDAP setup where domains are not known to
@@ -90,10 +92,10 @@ EXAMPLES
         config dkim command, showing what arguments can be passed and what they do.
 
 OPTIONS
-    Config path, container or image adjustments
-        -i IMAGE_NAME
-            Provides the name of the 'docker-mailserver' image. The default value is
-            'docker.io/mailserver/docker-mailserver:latest'
+Config path, container or image adjustments
+-i IMAGE_NAME
+Provides the name of the 'docker-mailserver' image. The default value is
+'docker.io/mailserver/docker-mailserver:latest'
 
         -c CONTAINER_NAME
             Provides the name of the running container.
@@ -112,6 +114,6 @@ OPTIONS
             unshared with other containers on a SELinux-enabled host.
 
 EXIT STATUS
-    Exit status is 0 if the command was successful. If there was an unexpected error, an error
-    message is shown describing the error. In case of an error, the script will exit with exit
-    status 1.
+Exit status is 0 if the command was successful. If there was an unexpected error, an error
+message is shown describing the error. In case of an error, the script will exit with exit
+status 1.
