@@ -11,6 +11,7 @@ steps:
   - name: docker-compose
     image: tmaier/docker-compose:latest
     commands:
+      - mv prd-${DRONE_REPO_NAME}-app.env.example prd-${DRONE_REPO_NAME}-app.env
       - docker-compose config -q
 
 ---
