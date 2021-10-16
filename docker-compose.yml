@@ -5,11 +5,9 @@ services:
     image: docker-registry.theautomation.nl/coen/prd-mailserver-app:latest
     container_name: prd-mailserver-app
     restart: always
-    hostname: mail
-    domainname: theautomation.nl
     env_file: prd-mailserver-app.env
     networks:
-      mailserver:
+      home-services:
     ports:
       - "25:25" # SMTP  (explicit TLS => STARTTLS)
       - "143:143" # IMAP4 (explicit TLS => STARTTLS)
@@ -30,9 +28,9 @@ services:
 
 # NETWORKS
 networks:
-  mailserver:
+  home-services:
     driver: bridge
-    name: mailserver
+    name: home-services
     ipam:
       config:
-        - subnet: 172.21.0.0/16
+        - subnet: 172.20.0.0/16

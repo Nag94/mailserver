@@ -1,30 +1,54 @@
 # mailserver
 
-[![Build Status](https://drone.theautomation.nl/api/badges/theautomation/mailserver/status.svg)](https://drone.theautomation.nl/theautomation/mailserver)
+[![Build Status](https://drone.domain.nl/api/badges/theautomation/mailserver/status.svg)](https://drone.domain.nl/theautomation/mailserver)
 ![GitHub repo size](https://img.shields.io/github/repo-size/theautomation/mailserver?logo=Github)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/theautomation/mailserver?logo=github)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/theautomation/mailserver/main?logo=github)
 
-### Common setup config commands
+[Documentation](https://docker-mailserver.github.io/docker-mailserver/edge/)
 
-[Documentation](https://docker-mailserver.github.io/docker-mailserver/edge/).
+### Common setup config commands from host
 
 #### Add email user
 
 ```bash
-docker exec prd-mailserver-app setup email add user@theautomation.nl password
+docker exec prd-mailserver-app setup email add user@domain.nl password
+```
+
+#### Delete email user
+
+```bash
+docker exec prd-mailserver-app setup email del user@domain.nl
 ```
 
 #### Add alias
 
 ```bash
-docker exec prd-mailserver-app setup alias add alias@theautomation.nl user@theautomation.nl
+docker exec prd-mailserver-app setup alias add alias@domain.nl user@domain.nl
+```
+
+#### Show banned ipadresses
+
+```bash
+docker exec prd-mailserver-app setup debug fail2ban
+```
+
+#### Show banned ip
+
+```bash
+docker exec prd-mailserver-app setup debug fail2ban
+```
+
+#### Unban ip
+
+```bash
+docker exec prd-mailserver-app setup debug fail2ban unban xxx.xxx.xxx.xxx
 ```
 
 #### Config DKIM
 
 ```bash
-docker exec prd-mailserver-app setup config dkim
+docker exec prd-mailserver-app setup config dkim keysize 2048
 ```
 
 ### ./setup.sh help
