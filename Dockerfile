@@ -1,1 +1,1 @@
-FROM docker.io/mailserver/docker-mailserver:latest
+FROM docker.io/mailserver/docker-mailserver:10.2
