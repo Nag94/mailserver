@@ -27,12 +27,6 @@ docker exec prd-mailserver-app setup email del user@domain.nl
 docker exec prd-mailserver-app setup alias add alias@domain.nl user@domain.nl
 ```
 
-#### Show banned ipadresses
-
-```bash
-docker exec prd-mailserver-app setup debug fail2ban
-```
-
 #### Show banned ip
 
 ```bash

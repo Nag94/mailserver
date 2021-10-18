@@ -7,7 +7,7 @@ services:
     restart: always
     env_file: prd-mailserver-app.env
     networks:
-      home-services:
+      mailserver:
     ports:
       - "25:25" # SMTP  (explicit TLS => STARTTLS)
       - "143:143" # IMAP4 (explicit TLS => STARTTLS)
@@ -16,7 +16,7 @@ services:
       - "993:993" # IMAP4 (implicit TLS)
     volumes:
       - ./mail-data/:/var/mail/
-      - ./mail-state/:/var/mail-state/
+      - ./mail-state/:/var/mail-state/:rw
       - ./mail-logs/:/var/log/mail/
       - ./config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
@@ -28,9 +28,9 @@ services:
 
 # NETWORKS
 networks:
-  home-services:
+  mailserver:
     driver: bridge
-    name: home-services
+    name: mailserver
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.21.0.0/16
