@@ -7,7 +7,7 @@ services:
     restart: always
     env_file: prd-mailserver-app.env
     networks:
-      mailserver:
+      - mailserver
     ports:
       - "25:25" # SMTP  (explicit TLS => STARTTLS)
       - "143:143" # IMAP4 (explicit TLS => STARTTLS)
@@ -26,11 +26,10 @@ services:
       - NET_ADMIN
       - SYS_PTRACE
 
-# NETWORKS
 networks:
   mailserver:
-    driver: bridge
     name: mailserver
+    driver: bridge
     ipam:
       config:
         - subnet: 172.21.0.0/16
